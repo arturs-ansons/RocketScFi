@@ -1,11 +1,10 @@
 package com.example.RocketScFi.model;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Mission {
     private long id;
     private String launchDate;
