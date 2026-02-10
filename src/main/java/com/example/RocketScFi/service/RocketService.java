@@ -1,8 +1,5 @@
 package com.example.RocketScFi.service;
 
-import com.example.RocketScFi.model.Crew;
-import com.example.RocketScFi.model.Mission;
-import com.example.RocketScFi.model.Person;
 import com.example.RocketScFi.model.Spacecraft;
 import org.springframework.stereotype.Service;
 
@@ -28,11 +25,11 @@ public class RocketService {
         return spacecrafts.put(id, spacecraft);
     }
 
-    public Spacecraft getSpacecrafts(long id) {
+    public Spacecraft getSpacecraft(long id) {
         return spacecrafts.get(id);
-    };
+    }
 
     public Collection<Spacecraft> getSpacecrafts() {
         return spacecrafts.values();
-    };
+    }
 }

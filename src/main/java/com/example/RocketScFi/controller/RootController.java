@@ -8,7 +8,7 @@ public class RootController {
 
     // Redirect root URL to /items
     @GetMapping("/")
-    public String redirectToItems() {
-        return "redirect:/items";
+    public String redirectToSpacecrafts() {
+        return "redirect:/spacecrafts";
     }
 }
