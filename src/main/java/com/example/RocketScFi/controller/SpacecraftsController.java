@@ -19,7 +19,7 @@ public class SpacecraftsController {
     // GET /spacecrafts -> list page
     @GetMapping
     public String listItems(Model model) {
-        model.addAttribute("spacecrafts", rocketService.getSpacecrafts());
+        model.addAttribute("spacecrafts", rocketService.findAll());
         return "spacecrafts"; // Thymeleaf template: spacecrafts.html
     }
 
@@ -33,7 +33,7 @@ public class SpacecraftsController {
     // POST /spacecrafts -> save new spacecraft
     @PostMapping
     public String save(@ModelAttribute Spacecraft spacecraft) {
-        rocketService.createSpacecraft(
+        rocketService.save(
                 spacecraft.getName(),
                 spacecraft.getMass(),
                 spacecraft.getManufacturer()
