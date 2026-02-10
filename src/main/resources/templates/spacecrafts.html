@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Spacecraft list</title>
+    <link rel="stylesheet" th:href="@{/css/spacecrafts.css}">
+</head>
 <body>
 
-<h1>Spacraft List</h1>
+<div class="container">
+    <h1 class="list-header">Spacecraft List</h1>
 
-<a th:href="@{/spacecrafts/new}">Add new spacecraft</a>
+    <a th:href="@{/spacecrafts/new}" class="btn-secondary">Add new spacecraft</a>
 
-<ul>
-    <li th:each="s : ${spacecrafts}">
-        <span th:text="${s.id}"></span> |
-        <span th:text="${s.name}"></span> |
-        <span th:text="${s.mass}"></span> kg |
-        <span th:text="${s.manufacturer}"></span>
-    </li>
-</ul>
+    <ul class="spacecraft-list">
+        <li th:each="s : ${spacecrafts}" class="list-item">
+            <span class="id-tag" th:text="${s.id}"></span>
+            <span class="name-tag" th:text="${s.name}"></span>
+            <span class="mass-tag" th:text="${s.mass} + ' kg'"></span>
+            <span class="manufacturer-tag" th:text="${s.manufacturer}"></span>
+        </li>
+    </ul>
+</div>
 
 </body>
 </html>
