@@ -25,6 +25,11 @@ public class RocketService {
         return spacecrafts.put(id, spacecraft);
     }
 
-    public Spacecraft getSpacecrafts(long id);
-    public Spacecraft getSpacecrafts();
+    public Spacecraft getSpacecrafts(long id) {
+        return spacecrafts.get(id);
+    };
+
+    public Collection<Spacecraft> getSpacecrafts() {
+        return spacecrafts.values();
+    };
 }
