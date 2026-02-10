@@ -21,6 +21,7 @@ public class SecurityConfig {
         this.passwordEncoder = passwordEncoder;
     }
 
+    // In-memory users
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {
         UserDetails admin = User.builder()
@@ -41,20 +42,25 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(AbstractHttpConfigurer::disable)
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/login").permitAll()
-                        .requestMatchers("/items/new", "/items").hasRole("ADMIN")
-                        .requestMatchers("/items").authenticated()
+                        .requestMatchers("/spacecrafts/new").hasRole("ADMIN")              // admin only for creating
+                        .requestMatchers("/spacecrafts").hasAnyRole("ADMIN", "USER")       // list accessible to logged-in users
                         .anyRequest().permitAll()
                 )
-                .formLogin(AbstractHttpConfigurer::disable)
+                .formLogin(form -> form
+                        .loginPage("/login")               // custom login page (login.html)
+                        .defaultSuccessUrl("/spacecrafts", true) // redirect after login
+                        .failureUrl("/login?error") //error on failed login
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login?logout")    // pass 'logout' param after logout
+                        .permitAll()
+                )
                 .exceptionHandling(ex -> ex
-                        .accessDeniedHandler((req, res, ex1) -> {
-                            res.setContentType("application/json");
-                            res.setStatus(403);
-                            res.getWriter().write("{\"status\":403,\"message\":\"Access denied\"}");
-                        })
+                        .accessDeniedPage("/error/403") // <-- maps 403 errors
                 );
 
         return http.build();

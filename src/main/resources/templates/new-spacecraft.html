@@ -9,7 +9,7 @@
     <input type="text" th:field="*{name}" /><br/>
 
     <label>Mass</label>
-    <input type="number" th:field="*{mass}" /><br/>
+    <input type="number" th:field="*{mass}" min="0" step="any" required /><br/>
 
     <label>Manufacturer</label>
     <input type="text" th:field="*{manufacturer}" /><br/>
