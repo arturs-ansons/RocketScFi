@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/items")
 public class SpacecraftController {
 
     private final RocketService rocketService;
@@ -15,20 +16,28 @@ public class SpacecraftController {
         this.rocketService = rocketService;
     }
 
-    @GetMapping("/")
-    public String index(Model model) {
-        model.addAttribute("spacecraft", new Spacecraft());
+    // GET /items -> list page
+    @GetMapping
+    public String listItems(Model model) {
         model.addAttribute("spacecrafts", rocketService.getSpacecrafts());
-        return "index";
+        return "items"; // Thymeleaf template: items.html
     }
 
-    @PostMapping("/items")
+    // GET /items/new -> form page
+    @GetMapping("/new")
+    public String showCreateForm(Model model) {
+        model.addAttribute("spacecraft", new Spacecraft());
+        return "new-item"; // Thymeleaf template: new-item.html
+    }
+
+    // POST /items -> save new spacecraft
+    @PostMapping
     public String save(@ModelAttribute Spacecraft spacecraft) {
         rocketService.createSpacecraft(
                 spacecraft.getName(),
                 spacecraft.getMass(),
                 spacecraft.getManufacturer()
         );
-        return "redirect:/";
+        return "redirect:/items";
     }
 }

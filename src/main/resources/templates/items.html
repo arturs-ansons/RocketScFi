@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<body>
+
+<h1>Spacraft List</h1>
+
+<a th:href="@{/items/new}">Add new spacecraft</a>
+
+<ul>
+    <li th:each="s : ${spacecrafts}">
+        <span th:text="${s.id}"></span> |
+        <span th:text="${s.name}"></span> |
+        <span th:text="${s.mass}"></span> kg |
+        <span th:text="${s.manufacturer}"></span>
+    </li>
+</ul>
+
+</body>
+</html>

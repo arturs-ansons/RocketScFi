@@ -14,20 +14,10 @@
     <label>Manufacturer</label>
     <input type="text" th:field="*{manufacturer}" /><br/>
 
-    <button type="submit">Add</button>
+    <button type="submit">Save</button>
 </form>
 
-<hr/>
-
-<h2>Spacecrafts</h2>
-<ul>
-    <li th:each="s : ${spacecrafts}">
-        <span th:text="${s.id}"></span> |
-        <span th:text="${s.name}"></span> |
-        <span th:text="${s.mass}"></span>kg |
-        <span th:text="${s.manufacturer}"></span>
-    </li>
-</ul>
+<a th:href="@{/items}">Back to list</a>
 
 </body>
 </html>
