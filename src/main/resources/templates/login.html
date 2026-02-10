@@ -1,29 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Login</title>
+    <title>Login - Spacecraft Manager</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
 <body>
-<h1>Login</h1>
 
-<!-- Show message if logged out -->
-<div th:if="${param.logout}">
-    <p style="color:green;">You have been logged out successfully</p>
+<div class="login-card">
+    <h1 class="list-header">Login</h1>
+
+    <div th:if="${param.logout}" class="alert alert-success">
+        You have been logged out successfully.
+    </div>
+
+    <div th:if="${param.error}" class="alert alert-error">
+        Invalid username or password.
+    </div>
+
+    <form th:action="@{/login}" method="post">
+        <div class="input-group">
+            <label>Username</label>
+            <input type="text" name="username" placeholder="Enter your username" required />
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" name="password" placeholder="••••••••" required />
+        </div>
+
+        <button type="submit" class="btn-primary">Sign In</button>
+    </form>
+
 </div>
 
-<!-- Show error if login failed -->
-<div th:if="${param.error}">
-    <p style="color:red;">Invalid username or password</p>
-</div>
-
-<form th:action="@{/login}" method="post">
-    <label>Username</label>
-    <input type="text" name="username" /><br/>
-
-    <label>Password</label>
-    <input type="password" name="password" /><br/>
-
-    <button type="submit">Login</button>
-</form>
 </body>
 </html>

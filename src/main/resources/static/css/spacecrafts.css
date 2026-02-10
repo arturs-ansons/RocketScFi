@@ -102,3 +102,35 @@ body{
     text-align: center;
     color: grey;
 }
+
+.user-card {
+    margin-top: 1.5rem;
+    background: white;
+    min-width: 600px;
+    padding: 1rem 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    color: #4a5568;
+    font-size: 0.9rem;
+}
+
+.btn-logout-small {
+    background: transparent;
+    border: 1px solid #e2e8f0;
+    color: #718096;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-logout-small:hover {
+    border-color: red;
+    color: white;
+    background: red;
+}
