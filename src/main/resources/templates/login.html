@@ -4,18 +4,26 @@
     <title>Login</title>
 </head>
 <body>
+<h1>Login</h1>
 
-    <h1>Login</h1>
+<!-- Show message if logged out -->
+<div th:if="${param.logout}">
+    <p style="color:green;">You have been logged out successfully</p>
+</div>
 
-    <form th:action="@{/login}" method="post">
-        <label>Username</label>
-        <input type="text" name="username" /><br/>
+<!-- Show error if login failed -->
+<div th:if="${param.error}">
+    <p style="color:red;">Invalid username or password</p>
+</div>
 
-        <label>Password</label>
-        <input type="password" name="password" /><br/>
+<form th:action="@{/login}" method="post">
+    <label>Username</label>
+    <input type="text" name="username" /><br/>
 
-        <button type="submit">Login</button>
-    </form>
+    <label>Password</label>
+    <input type="password" name="password" /><br/>
 
+    <button type="submit">Login</button>
+</form>
 </body>
 </html>
