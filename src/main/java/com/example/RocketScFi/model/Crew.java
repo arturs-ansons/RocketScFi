@@ -1,6 +1,6 @@
 package com.example.RocketScFi.model;
 
-import java.util.Map;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,5 +12,5 @@ import lombok.Setter;
 
 public class Crew {
     private long id;
-    private Map<Long, Person> people;
+    private List<Long> people;
 }
