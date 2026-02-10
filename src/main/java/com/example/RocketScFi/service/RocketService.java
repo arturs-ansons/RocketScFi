@@ -22,6 +22,9 @@ public class RocketService {
             id = 0;
         }
         spacecraft.setId(id);
+        spacecraft.setName(name);
+        spacecraft.setMass(mass);
+        spacecraft.setManufacturer(manufacturer);
         return spacecrafts.put(id, spacecraft);
     }
 

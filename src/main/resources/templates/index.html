@@ -1,10 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Rocket SciFi</title>
-        <link rel="stylesheet" th:href="@{../static/css/style.css}">
-    </head>
-    <body>
-        <p>hello</p>
-    </body>
+<body>
+
+<h1>Add Spacecraft</h1>
+
+<form th:action="@{/items}" th:object="${spacecraft}" method="post">
+    <label>Name</label>
+    <input type="text" th:field="*{name}" /><br/>
+
+    <label>Mass</label>
+    <input type="number" th:field="*{mass}" /><br/>
+
+    <label>Manufacturer</label>
+    <input type="text" th:field="*{manufacturer}" /><br/>
+
+    <button type="submit">Add</button>
+</form>
+
+<hr/>
+
+<h2>Spacecrafts</h2>
+<ul>
+    <li th:each="s : ${spacecrafts}">
+        <span th:text="${s.id}"></span> |
+        <span th:text="${s.name}"></span> |
+        <span th:text="${s.mass}"></span>kg |
+        <span th:text="${s.manufacturer}"></span>
+    </li>
+</ul>
+
+</body>
 </html>
