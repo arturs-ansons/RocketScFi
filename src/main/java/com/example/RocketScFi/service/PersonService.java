@@ -23,6 +23,16 @@ public class PersonService {
         return true;
     }
 
+    public boolean deleteById(long id) {
+        if (findById(id).isEmpty()) {
+            return false;
+        }
+
+        personRepository.deleteById(id);
+        return true;
+    }
+
+
     public Optional<PersonResponse> findById(long id) {
         Optional<Person> personOptional = personRepository.findById(id);
         if (personOptional.isEmpty()) {

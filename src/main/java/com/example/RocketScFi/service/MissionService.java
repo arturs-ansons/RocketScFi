@@ -39,6 +39,16 @@ public class MissionService {
         return true;
     }
 
+    public boolean deleteById(long id) {
+        if (findById(id).isEmpty()) {
+            return false;
+        }
+
+        missionRepository.deleteById(id);
+        return true;
+    }
+
+
     public Optional<MissionResponse> findById(long id) {
         Optional<Mission> missionOptional = missionRepository.findById(id);
         if (missionOptional.isEmpty()) {
