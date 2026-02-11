@@ -27,7 +27,6 @@ public class CrewService {
         List<Long> ids = new ArrayList<>();
         for (Long person : crewDTO.getPeople()) {
             if (ids.contains(person)) {
-                System.out.println("error");
                 return false;
             }
             ids.add(person);
