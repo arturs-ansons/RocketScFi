@@ -4,4 +4,4 @@ import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SpacecraftRepository extends ListCrudRepository<Spacecraft, Long> { }
+public interface MissionRepository extends ListCrudRepository<Mission, Long> { }

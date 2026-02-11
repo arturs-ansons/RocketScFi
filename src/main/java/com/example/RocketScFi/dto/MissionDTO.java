@@ -8,10 +8,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MissionDTO {
-    private long id;
     private String launchDate;
     private String launchSite;
     private String landingDevice;
     private long crew;
-    private long spaceCraft;
+    private long spacecraft;
 }

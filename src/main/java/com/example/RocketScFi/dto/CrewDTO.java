@@ -10,6 +10,5 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CrewDTO {
-    private long id;
     private List<Long> people;
 }
