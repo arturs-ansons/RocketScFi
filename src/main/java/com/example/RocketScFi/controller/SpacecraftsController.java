@@ -1,13 +1,11 @@
 package com.example.RocketScFi.controller;
 
 import com.example.RocketScFi.dto.SpacecraftDTO;
-import com.example.RocketScFi.model.Spacecraft;
 import com.example.RocketScFi.service.PersonService;
 import com.example.RocketScFi.service.SpacecraftService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import com.example.RocketScFi.store.DataStore;
 
 @Controller
 @RequestMapping("/spacecrafts")

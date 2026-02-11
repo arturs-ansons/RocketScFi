@@ -1,16 +1,11 @@
 package com.example.RocketScFi.controller;
 
 import com.example.RocketScFi.dto.CrewDTO;
-import com.example.RocketScFi.model.Crew;
-import com.example.RocketScFi.model.SpacecraftRepository;
 import com.example.RocketScFi.service.CrewService;
 import com.example.RocketScFi.service.PersonService;
-import com.example.RocketScFi.store.DataStore;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/crews")
@@ -41,7 +36,7 @@ public class CrewController {
     public String createCrew(@ModelAttribute CrewDTO crew) {
 
         // Validation: must have at least 2 members
-        if (crew.getPeople().size() <= 2) {
+        if (crew.getPeople().size() < 2) {
             return "redirect:/crews/new?error";
         }
 
