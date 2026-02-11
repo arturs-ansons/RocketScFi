@@ -1,5 +1,7 @@
 package com.example.RocketScFi.controller;
 
+import com.example.RocketScFi.dto.PersonDTO;
+import com.example.RocketScFi.service.PersonService;
 import org.springframework.ui.Model;
 import com.example.RocketScFi.model.Person;
 import org.springframework.stereotype.Controller;
@@ -16,20 +18,21 @@ import java.util.concurrent.atomic.AtomicLong;
 @Controller
 @RequestMapping("/persons")
 public class PersonController {
+    private final PersonService personService;
 
-    private final List<Person> persons = new ArrayList<>();
-    private final AtomicLong counter = new AtomicLong();
+    public PersonController(PersonService personService) {
+        this.personService = personService;
+    }
 
     @GetMapping("/new")
     public String showCreateForm(Model model) {
-        model.addAttribute("person", new Person());
+        model.addAttribute("person", new PersonDTO());
         return "new-person";
     }
 
     @PostMapping
-    public String createPerson(@ModelAttribute Person person) {
-        person.setId(DataStore.personCounter.incrementAndGet());
-        DataStore.persons.add(person);
+    public String createPerson(@ModelAttribute PersonDTO person) {
+        personService.save(person);
         return "redirect:/spacecrafts";
     }
 }

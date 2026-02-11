@@ -18,11 +18,9 @@
             Add new person
         </a>
         <ul class="spacecraft-list">
-            <li th:each="s : ${spacecrafts}">
-                <span th:text="${s.id}"></span> |
-                <span th:text="${s.name}"></span> |
-                <span th:text="${s.mass}"></span> kg |
-                <span th:text="${s.manufacturer}"></span>
+            <li th:each="s : ${persons}">
+                <span th:text="${s.firstName}"></span>
+                <span th:text="${s.lastName}"></span>
             </li>
         </ul>
     </div>
@@ -33,7 +31,7 @@
             Add new crew
         </a>
         <ul class="spacecraft-list">
-            <li th:each="s : ${spacecrafts}">
+            <li th:each="s : ${crews}">
                 <span th:text="${s.id}"></span> |
                 <span th:text="${s.name}"></span> |
                 <span th:text="${s.mass}"></span> kg |
