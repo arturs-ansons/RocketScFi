@@ -1,36 +1,54 @@
 package com.example.RocketScFi.service;
 
-import com.example.RocketScFi.model.Crew;
-import com.example.RocketScFi.model.Mission;
-import com.example.RocketScFi.model.Person;
-import com.example.RocketScFi.model.Spacecraft;
+import com.example.RocketScFi.dto.SpacecraftDTO;
+import com.example.RocketScFi.dto.SpacecraftResponse;
+import com.example.RocketScFi.model.*;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
-public class RocketService {
+public class SpacecraftService {
+    private final SpacecraftRepository spacecraftRepository;
     SortedMap<Long, Spacecraft> spacecrafts = new TreeMap<>();
     SortedMap<Long, Person> people = new TreeMap<>();
     SortedMap<Long, Crew> crews = new TreeMap<>();
     SortedMap<Long, Mission> missions = new TreeMap<>();
 
-    public void saveSpacecraft(String name, double mass, String manufacturer) {
-        long id = getLastKey(spacecrafts);
-        Spacecraft spacecraft = new Spacecraft(id, name, mass, manufacturer);
-        spacecraft.setId(id);
-        spacecraft.setName(name);
-        spacecraft.setMass(mass);
-        spacecraft.setManufacturer(manufacturer);
-        spacecrafts.put(id, spacecraft);
+    public SpacecraftService(SpacecraftRepository spacecraftRepository) {
+        this.spacecraftRepository = spacecraftRepository;
     }
 
-    public Optional<Spacecraft> findSpacecraftById(long id) {
-        return Optional.ofNullable(spacecrafts.get(id));
+    public void save(SpacecraftDTO spacecraftDTO) {
+        Spacecraft spacecraft = new Spacecraft();
+        spacecraft.setId(spacecraftDTO.getId());
+        spacecraft.setName(spacecraftDTO.getName());
+        spacecraft.setMass(spacecraftDTO.getMass());
+        spacecraft.setManufacturer(spacecraftDTO.getManufacturer());
+        spacecraftRepository.save(spacecraft);
     }
 
-    public Collection<Spacecraft> findAllSpacecrafts() {
-        return spacecrafts.values();
+    public Optional<SpacecraftResponse> findById(long id) {
+        Optional<Spacecraft> spacecraftOptional = spacecraftRepository.findById(id);
+        if (spacecraftOptional.isEmpty()) {
+            return Optional.empty();
+        }
+        Spacecraft spacecraft = spacecraftOptional.get();
+        SpacecraftResponse spacecraftResponse = new SpacecraftResponse(
+                spacecraft.getId(),
+                spacecraft.getName(),
+                spacecraft.getMass(),
+                spacecraft.getManufacturer()
+        );
+        return Optional.of(spacecraftResponse);
+    }
+
+    public List<SpacecraftResponse> findAll() {
+        return spacecraftRepository
+                .findAll()
+                .stream()
+                .map(e -> new SpacecraftResponse(e.getId(), e.getName(), e.getMass(), e.getManufacturer()))
+                .toList();
     }
 
     public void savePerson(String firstName, String lastName) {
