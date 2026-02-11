@@ -10,12 +10,6 @@
 <div class="container">
   <h1 class="list-header">Crew List</h1>
 
-  <a sec:authorize="hasRole('ADMIN')"
-     th:href="@{/crews/new}"
-     class="btn-secondary">
-    Add new crew
-  </a>
-
   <ul class="spacecraft-list">
     <li th:each="crew : ${crews}">
       <strong>Crew ID:</strong>

@@ -33,9 +33,9 @@
         <ul class="spacecraft-list">
             <li th:each="s : ${crews}">
                 <span th:text="${s.id}"></span> |
-                <span th:text="${s.name}"></span> |
-                <span th:text="${s.mass}"></span> kg |
-                <span th:text="${s.manufacturer}"></span>
+                <a th:href="@{/crews/{id}(id=${s.id})}" class="btn-primary">
+                    Crew details
+                </a>
             </li>
         </ul>
     </div>
