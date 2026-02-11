@@ -6,7 +6,9 @@ import com.example.RocketScFi.service.CrewService;
 import com.example.RocketScFi.service.PersonService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
@@ -51,7 +53,7 @@ public class CrewController {
     @GetMapping("/{id}")
     public String getCrewDetails(@PathVariable Long id, Model model) {
         CrewResponse crew = crewService.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid crew Id:" + id));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Crew not found: " + id));
 
         model.addAttribute("crews", List.of(crew));
 
