@@ -29,6 +29,16 @@ public class CrewService {
         return true;
     }
 
+    public boolean deleteById(long id) {
+        if (findById(id).isEmpty()) {
+            return false;
+        }
+
+        crewRepository.deleteById(id);
+        return true;
+    }
+
+
     public Optional<CrewResponse> findById(long id) {
         Optional<Crew> crewOptional = crewRepository.findById(id);
         if (crewOptional.isEmpty()) {

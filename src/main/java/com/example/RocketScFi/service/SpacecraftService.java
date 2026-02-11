@@ -24,6 +24,15 @@ public class SpacecraftService {
         return true;
     }
 
+    public boolean deleteById(long id) {
+        if (findById(id).isEmpty()) {
+            return false;
+        }
+
+        spacecraftRepository.deleteById(id);
+        return true;
+    }
+
     public Optional<SpacecraftResponse> findById(long id) {
         Optional<Spacecraft> spacecraftOptional = spacecraftRepository.findById(id);
         if (spacecraftOptional.isEmpty()) {
