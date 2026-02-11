@@ -13,5 +13,5 @@ public class MissionResponse {
     private String launchSite;
     private String landingDevice;
     private long crew;
-    private long spaceCraft;
+    private long spacecraft;
 }
