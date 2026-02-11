@@ -10,9 +10,11 @@ import java.util.*;
 @Service
 public class PersonService {
     private final PersonRepository personRepository;
+    private final CrewRepository crewRepository;
 
-    public PersonService(PersonRepository personRepository) {
+    public PersonService(PersonRepository personRepository, CrewRepository crewRepository) {
         this.personRepository = personRepository;
+        this.crewRepository = crewRepository;
     }
 
     public boolean save(PersonDTO personDTO) {
@@ -24,11 +26,17 @@ public class PersonService {
     }
 
     public boolean deleteById(long id) {
-        if (findById(id).isEmpty()) {
+        Optional<Person> optionalPerson = personRepository.findById(id);
+        if (optionalPerson.isEmpty()) {
             return false;
         }
+        Person person = optionalPerson.get();
+        Crew crew = person.getCrew();
+        List<Person> people = crew.getPeople();
+        people.remove(person);
+        crew.setPeople(people);
 
-        personRepository.deleteById(id);
+        personRepository.delete(person);
         return true;
     }
 

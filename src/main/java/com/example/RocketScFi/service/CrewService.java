@@ -5,26 +5,43 @@ import com.example.RocketScFi.dto.CrewResponse;
 import com.example.RocketScFi.model.*;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.*;
 
 @Service
 public class CrewService {
-    private final PersonService personService;
+    private final PersonRepository personRepository;
     private final CrewRepository crewRepository;
 
-    public CrewService(PersonService personService, CrewRepository crewRepository) {
-        this.personService = personService;
+    public CrewService(PersonRepository personRepository, CrewRepository crewRepository) {
+        this.personRepository = personRepository;
         this.crewRepository = crewRepository;
     }
 
     public boolean save(CrewDTO crewDTO) {
         for (Long personId : crewDTO.getPeople()) {
-            if (personService.findById(personId).isEmpty()) {
+            if (personRepository.findById(personId).isEmpty()) {
                 return false;
             }
         }
+        List<Long> ids = new ArrayList<>();
+        for (Long person : crewDTO.getPeople()) {
+            if (ids.contains(person)) {
+                System.out.println("error");
+                return false;
+            }
+            ids.add(person);
+        }
+
         Crew crew = new Crew();
-        crew.setPeople(crewDTO.getPeople());
+        for (Long id : ids) {
+            Optional<Person> optionalPerson = personRepository.findById(id);
+            if (optionalPerson.isEmpty()) {
+                continue;
+            }
+            Person person = optionalPerson.get();
+            person.setCrew(crew);
+        }
         crewRepository.save(crew);
         return true;
     }
@@ -47,7 +64,7 @@ public class CrewService {
         Crew crew = crewOptional.get();
         CrewResponse crewResponse = new CrewResponse(
                 crew.getId(),
-                crew.getPeople()
+                crew.getPeople().stream().map(Person::getId).toList()
         );
         return Optional.of(crewResponse);
     }
@@ -56,7 +73,7 @@ public class CrewService {
         return crewRepository
                 .findAll()
                 .stream()
-                .map(e -> new CrewResponse(e.getId(), e.getPeople()))
+                .map(e -> new CrewResponse(e.getId(), e.getPeople().stream().map(Person::getId).toList()))
                 .toList();
     }
 }

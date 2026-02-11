@@ -1,8 +1,6 @@
 package com.example.RocketScFi.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Data
@@ -13,4 +11,6 @@ public class Person {
     private long id;
     private String firstName;
     private String lastName;
+    @ManyToOne
+    private Crew crew;
 }

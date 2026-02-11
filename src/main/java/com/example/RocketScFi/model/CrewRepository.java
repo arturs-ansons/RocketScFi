@@ -4,4 +4,6 @@ import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CrewRepository extends ListCrudRepository<Crew, Long> { }
+public interface CrewRepository extends ListCrudRepository<Crew, Long> {
+    Iterable<Crew> findByPeopleId(Long id);
+}
