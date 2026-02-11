@@ -2,6 +2,7 @@ package com.example.RocketScFi.controller;
 
 import com.example.RocketScFi.dto.SpacecraftDTO;
 import com.example.RocketScFi.model.Spacecraft;
+import com.example.RocketScFi.service.CrewService;
 import com.example.RocketScFi.service.PersonService;
 import com.example.RocketScFi.service.SpacecraftService;
 import org.springframework.stereotype.Controller;
@@ -15,10 +16,12 @@ public class SpacecraftsController {
 
     private final SpacecraftService spacecraftService;
     private final PersonService personService;
+    private final CrewService crewService;
 
-    public SpacecraftsController(SpacecraftService spacecraftService, PersonService personService) {
+    public SpacecraftsController(SpacecraftService spacecraftService, PersonService personService, CrewService crewService) {
         this.spacecraftService = spacecraftService;
         this.personService = personService;
+        this.crewService = crewService;
 
     }
 
@@ -28,6 +31,7 @@ public class SpacecraftsController {
         model.addAttribute("spacecrafts", spacecraftService.findAll());
 
         model.addAttribute("persons", personService.findAll());
+
         return "spacecrafts"; // Thymeleaf template: spacecrafts.html
     }
 
