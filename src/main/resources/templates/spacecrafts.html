@@ -8,48 +8,68 @@
 </head>
 <body>
 
-<div class="container">
-    <h1 class="list-header">Spacecraft List</h1>
+<h1 class="list-header">Spacecraft List</h1>
 
-    <a sec:authorize="hasRole('ADMIN')"
-       th:href="@{/spacecrafts/new}"
-       class="btn-secondary">
-        Add new spacecraft
-    </a>
-
-    <a sec:authorize="hasRole('ADMIN')"
-       th:href="@{/persons/new}"
-       class="btn-secondary">
-        Add new person
-    </a>
-
-    <a sec:authorize="hasRole('ADMIN')"
-       th:href="@{/crews/new}"
-       class="btn-secondary">
-        Add new crew
-    </a>
-
-    <a th:href="@{/crews}"
-       class="btn-secondary">
-        View crews
-    </a>
-
-    <ul class="spacecraft-list">
-        <li th:each="s : ${spacecrafts}">
-            <span th:text="${s.id}"></span> |
-            <span th:text="${s.name}"></span> |
-            <span th:text="${s.mass}"></span> kg |
-            <span th:text="${s.manufacturer}"></span>
-        </li>
-    </ul>
+<div class="list-container">
+    <div class="container">
+        <a sec:authorize="hasRole('ADMIN')"
+           th:href="@{/persons/new}"
+           class="btn-secondary">
+            Add new person
+        </a>
+        <ul class="spacecraft-list">
+            <li th:each="s : ${spacecrafts}">
+                <span th:text="${s.id}"></span> |
+                <span th:text="${s.name}"></span> |
+                <span th:text="${s.mass}"></span> kg |
+                <span th:text="${s.manufacturer}"></span>
+            </li>
+        </ul>
+    </div>
+    <div class="container">
+        <a sec:authorize="hasRole('ADMIN')"
+           th:href="@{/crews/new}"
+           class="btn-secondary">
+            Add new crew
+        </a>
+        <ul class="spacecraft-list">
+            <li th:each="s : ${spacecrafts}">
+                <span th:text="${s.id}"></span> |
+                <span th:text="${s.name}"></span> |
+                <span th:text="${s.mass}"></span> kg |
+                <span th:text="${s.manufacturer}"></span>
+            </li>
+        </ul>
+    </div>
+    <div class="container">
+        <a sec:authorize="hasRole('ADMIN')"
+           th:href="@{/spacecrafts/new}"
+           class="btn-secondary">
+            Add new spacecraft
+        </a>
+        <ul class="spacecraft-list">
+            <li th:each="s : ${spacecrafts}">
+                <span th:text="${s.id}"></span> |
+                <span th:text="${s.name}"></span> |
+                <span th:text="${s.mass}"></span> kg |
+                <span th:text="${s.manufacturer}"></span>
+            </li>
+        </ul>
+    </div>
 </div>
+<!--    <a th:href="@{/crews}"-->
+<!--       class="btn-secondary">-->
+<!--        View crews-->
+<!--    </a>-->
 
 <!-- Show logged-in user and logout -->
-<div class="user-card" sec:authorize="isAuthenticated()">
-    <span>Logged in as: <b sec:authentication="name"></b></span>
-    <form th:action="@{/logout}" method="post" style="display:inline;">
-        <button type="submit" class="btn-logout-small">Logout</button>
-    </form>
+<div class="user-card-container">
+    <div class="user-card" sec:authorize="isAuthenticated()">
+        <span>Logged in as: <b sec:authentication="name"></b></span>
+        <form th:action="@{/logout}" method="post" style="display:inline;">
+            <button type="submit" class="btn-logout-small">Logout</button>
+        </form>
+    </div>
 </div>
 
 </body>
