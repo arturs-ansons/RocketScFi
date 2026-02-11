@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+  <title>Crew List</title>
+  <link rel="stylesheet" th:href="@{/css/spacecrafts.css}">
+</head>
+<body>
+
+<div class="container">
+  <h1 class="list-header">Crew List</h1>
+
+  <a sec:authorize="hasRole('ADMIN')"
+     th:href="@{/crews/new}"
+     class="btn-secondary">
+    Add new crew
+  </a>
+
+  <ul class="spacecraft-list">
+    <li th:each="crew : ${crews}">
+      <strong>Crew ID:</strong>
+      <span th:text="${crew.id}"></span>
+      <br/>
+
+      <strong>Members:</strong>
+
+      <ul>
+        <li th:each="personId : ${crew.people}">
+                    <span th:each="p : ${persons}"
+                          th:if="${p.id == personId}"
+                          th:text="${p.firstName + ' ' + p.lastName}">
+                    </span>
+        </li>
+      </ul>
+
+      <hr/>
+    </li>
+  </ul>
+
+  <a th:href="@{/spacecrafts}" class="btn-secondary">
+    Back to main page
+  </a>
+
+</div>
+
+</body>
+</html>

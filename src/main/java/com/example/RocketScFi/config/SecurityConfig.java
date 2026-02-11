@@ -46,6 +46,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/spacecrafts/new").hasRole("ADMIN")              // admin only for creating
                         .requestMatchers("/spacecrafts").hasAnyRole("ADMIN", "USER")       // list accessible to logged-in users
+                        .requestMatchers("/persons/new").hasRole("ADMIN")
+                        .requestMatchers("/persons").hasRole("ADMIN")
+                        .requestMatchers("/crews/new").hasRole("ADMIN")  // create = admin only
+                        .requestMatchers("/crews").hasAnyRole("ADMIN", "USER") // listing allowed
                         .anyRequest().permitAll()
                 )
                 .formLogin(form -> form

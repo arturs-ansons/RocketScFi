@@ -1,0 +1,116 @@
+/* --- Base body & form container --- */
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.spacecraft-add-form {
+    background: white;
+    min-width: 600px;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* --- Header --- */
+.list-header {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #2d3748;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-align: center;
+}
+
+/* --- Validation error --- */
+.validation-error {
+    color: #d93025;
+    background-color: #fdecea;
+    border: 1px solid #f5c2c7;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* --- Members checkbox box --- */
+.members-box {
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 15px;
+    max-height: 250px;
+    overflow-y: auto;
+    background: #f9fafb;
+}
+
+.member-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.member-item input {
+    margin-right: 12px;
+    accent-color: #667eea;
+}
+
+/* --- Buttons --- */
+.btn-primary {
+    display: block;
+    width: 100%;
+    padding: 0.85rem;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.2s;
+}
+
+.btn-primary:hover {
+    background: #5663c9;
+}
+
+.btn-secondary {
+    display: block;
+    width: 100%;
+    padding: 0.85rem;
+    background: transparent;
+    color: #667eea;
+    border: 2px solid #667eea;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 0.5rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn-secondary:hover {
+    background: #667eea;
+    color: white;
+}
+
+/* --- Labels --- */
+label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+    color: #2d3748;
+}

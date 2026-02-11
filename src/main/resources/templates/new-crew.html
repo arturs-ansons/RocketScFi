@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Create Crew</title>
+  <link rel="stylesheet" th:href="@{/css/new-crew.css}">
+</head>
+<body>
+
+<div class="spacecraft-add-form">
+  <h1 class="list-header">Create Crew</h1>
+
+  <form th:action="@{/crews}" th:object="${crew}" method="post">
+
+    <label>Select Crew Members (minimum 2)</label>
+
+    <div class="members-box">
+      <div class="member-item"
+           th:each="person : ${persons}">
+        <input type="checkbox"
+               th:field="*{people}"
+               th:value="${person.id}" />
+
+        <span th:text="${person.firstName + ' ' + person.lastName}"></span>
+      </div>
+    </div>
+
+    <!-- Validation error -->
+    <div th:if="${param.error}" class="validation-error">
+      A crew must contain at least 2 members.
+    </div>
+
+    <button type="submit" class="btn-primary">Create Crew</button>
+  </form>
+
+  <a th:href="@{/crews}" class="btn-secondary">Back to crew list</a>
+
+</div>
+
+</body>
+</html>

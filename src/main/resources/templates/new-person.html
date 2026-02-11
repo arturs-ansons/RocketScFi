@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Add Person</title>
+  <link rel="stylesheet" th:href="@{/css/new-spacecraft.css}">
+</head>
+<body>
+
+<div class="spacecraft-add-form">
+  <h1 class="list-header">Add Person</h1>
+
+  <form th:action="@{/persons}" th:object="${person}" method="post">
+    <label>First Name</label>
+    <input type="text" th:field="*{firstName}" required />
+
+    <label>Last Name</label>
+    <input type="text" th:field="*{lastName}" required />
+
+    <button type="submit" class="btn-primary">Save</button>
+  </form>
+
+  <a th:href="@{/spacecrafts}" class="btn-secondary">Back to list</a>
+</div>
+
+</body>
+</html>
