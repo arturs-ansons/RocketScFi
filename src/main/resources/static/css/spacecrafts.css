@@ -180,3 +180,12 @@ body{
     color: white;
     background: red;
 }
+
+.btn-delete{
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}

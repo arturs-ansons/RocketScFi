@@ -29,4 +29,10 @@ public class PersonController {
         personService.save(person);
         return "redirect:/spacecrafts";
     }
+
+    @PostMapping("/{id}/delete")
+    public String deletePerson(@PathVariable Long id) {
+        personService.deleteById(id);
+        return "redirect:/spacecrafts";
+    }
 }

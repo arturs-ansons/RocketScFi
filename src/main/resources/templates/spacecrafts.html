@@ -21,6 +21,12 @@
             <li th:each="s : ${persons}">
                 <span th:text="${s.firstName}"></span>
                 <span th:text="${s.lastName}"></span>
+                <form th:action="@{/persons/{id}/delete(id=${p.id})}" method="post" style="display:inline;">
+                    <button type="submit"
+                            class="btn-delete">
+                        Delete
+                    </button>
+                </form>
             </li>
         </ul>
     </div>
